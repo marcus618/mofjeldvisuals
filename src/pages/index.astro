@@ -7,34 +7,34 @@ const allImages = await getCollection('photography');
 ---
 
 <Layout title="My Photography Portfolio">
-	<div class="container mx-auto px-4">
-		<!-- THE MASONRY GRID CONTAINER -->
-		<div 
+    <div class="container mx-auto px-4">
+        <div 
             class="pswp-gallery columns-1 md:columns-2 lg:columns-3 gap-4 space-y-4" 
             id="gallery--main"
         >
-			{allImages.map((image) => {
-				return (
-					// The `break-inside-avoid` class is key to preventing images from splitting
-					<a
-						href={image.data.secure_url}
-						data-pswp-width={image.data.width}
-						data-pswp-height={image.data.height}
-						target="_blank"
-						rel="noreferrer"
-						class="group block break-inside-avoid"
-					>
-						<CldImage 
-							src={image.data.public_id}
-							width={image.data.width}
-							height={image.data.height}
-							alt="A portfolio image"
-							class="w-full h-auto object-cover rounded-md shadow-lg transform transition-transform duration-300 group-hover:scale-105"
-						/>
-					</a>
-				)
-			})}
-		</div>
+            {allImages.map((image) => {
+                return (
+                    <a
+                        href={image.data.secure_url}
+                        data-pswp-width={image.data.width}
+                        data-pswp-height={image.data.height}
+                        target="_blank"
+                        rel="noreferrer"
+                        class="group block break-inside-avoid image-container"
+                        data-image-id={image.data.public_id}
+                    >
+                        <CldImage 
+                            src={image.data.public_id}
+                            width={image.data.width}
+                            height={image.data.height}
+                            alt="A portfolio image"
+                            class="w-full h-auto object-cover rounded-md shadow-lg transform transition-transform duration-300 group-hover:scale-105"
+                            onError="this.parentElement.style.display='none'"
+                        />
+                    </a>
+                )
+            })}
+        </div>
 
         {allImages.length === 0 && (
             <div class="text-center text-gray-500 py-20">
@@ -42,22 +42,27 @@ const allImages = await getCollection('photography');
                 <p>Please make sure your images are uploaded to the correct Cloudinary folder and the folder name is correctly specified in <code>src/content/config.ts</code>.</p>
             </div>
         )}
-	</div>
+    </div>
 </Layout>
-
 
 <script>
     import PhotoSwipeLightbox from 'photoswipe/lightbox';
 
+    // Hide broken image containers
+    document.addEventListener('DOMContentLoaded', () => {
+        const images = document.querySelectorAll('.image-container img');
+        images.forEach(img => {
+            img.addEventListener('error', () => {
+                img.closest('.image-container').style.display = 'none';
+            });
+        });
+    });
+
     const lightbox = new PhotoSwipeLightbox({
-        // The container element for the gallery
         gallery: '#gallery--main',
-        // The selector for the gallery items
-        children: 'a',
-        // PhotoSwipe options
+        children: 'a:not([style*="display: none"])',
         pswpModule: () => import('photoswipe'),
     });
 
-    // Initialize the lightbox
     lightbox.init();
 </script>
