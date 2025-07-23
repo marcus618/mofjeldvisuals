@@ -3,7 +3,7 @@ import '../styles/global.css';
 import 'photoswipe/style.css';
 
 interface Props {
-	title: string;
+    title: string;
 }
 
 const { title } = Astro.props;
@@ -11,43 +11,33 @@ const { title } = Astro.props;
 
 <!doctype html>
 <html lang="en">
-	<head>
-		<meta charset="UTF-8" />
-		<meta name="description" content="A portfolio of my photography" />
-		<meta name="viewport" content="width=device-width" />
-		<link rel="icon" type="image/png" href="/signature-white.png" />
-		<link rel="preconnect" href="https://fonts.googleapis.com">
-		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-		<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" rel="stylesheet">
-		<title>{title}</title>
-	</head>
-	<body class="bg-gradient-to-br from-slate-900 to-zinc-900 text-gray-200 font-['Inter']">
-		<header class="p-8">
-    <nav class="container mx-auto flex justify-center items-center">
-        <a href="/">
-            <img 
-                src="/signature-white.png" 
-                alt="Mofjeld Visuals Signature Logo" 
-                class="h-30 w-auto" 
-            />
-        </a>
-    </nav>
-</header>
-		<main>
-			<slot /> <!-- The homepage content (photo grid) will be injected here -->
-		</main>
-		<footer class="text-center p-8 text-gray-500">
-			<p>© {new Date().getFullYear()} Mofjeld Visuals. All rights reserved.</p>
-		</footer>
-
-		<script>
-            import PhotoSwipeLightbox from 'photoswipe/lightbox';
-            const lightbox = new PhotoSwipeLightbox({
-                gallery: '#gallery--main',
-                children: 'a',
-                pswpModule: () => import('photoswipe'),
-            });
-            lightbox.init();
-		</script>
-	</body>
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="description" content="A portfolio of my photography" />
+        <meta name="viewport" content="width=device-width" />
+        <link rel="icon" type="image/png" href="/signature-white.png" />
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" rel="stylesheet">
+        <title>{title}</title>
+    </head>
+    <body class="bg-gradient-to-br from-slate-900 to-zinc-900 text-gray-200 font-['Inter']">
+        <header class="p-8">
+            <nav class="container mx-auto flex justify-center items-center">
+                <a href="/">
+                    <img 
+                        src="/signature-white.png" 
+                        alt="Mofjeld Visuals Signature Logo" 
+                        class="h-30 w-auto" 
+                    />
+                </a>
+            </nav>
+        </header>
+        <main>
+            <slot /> 
+        </main>
+        <footer class="text-center p-8 text-gray-500">
+            <p>© {new Date().getFullYear()} Mofjeld Visuals. All rights reserved.</p>
+        </footer>
+    </body>
 </html>
