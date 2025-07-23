@@ -4,7 +4,8 @@ import { cldAssetsLoader } from 'astro-cloudinary/loaders';
 const photographyCollection = defineCollection({
   loader: cldAssetsLoader({
     folder: 'Portfolio',
-    resourceType: 'image'
+    resourceType: 'image',
+    limit: 500
     })
 });
 
