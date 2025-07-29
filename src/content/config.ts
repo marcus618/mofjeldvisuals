@@ -5,7 +5,9 @@ const photographyCollection = defineCollection({
   loader: cldAssetsLoader({
     folder: 'Portfolio',
     resourceType: 'image',
-    limit: 500
+    limit: 500,
+    deliveryType: 'fetch'
+
     })
 });
 
