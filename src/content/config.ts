@@ -6,8 +6,8 @@ const photographyCollection = defineCollection({
     folder: 'Portfolio',
     resourceType: 'image',
     limit: 500,
-    deliveryType: 'fetch'
-
+    deliveryType: 'fetch',
+    tags: true
     })
 });
 
