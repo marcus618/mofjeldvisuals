@@ -7,14 +7,22 @@ interface Props {
 }
 
 const { title } = Astro.props;
+const imageUrl = new URL('/signature-white.png', Astro.url);
+
 ---
 
 <!doctype html>
 <html lang="en">
     <head>
         <meta charset="UTF-8" />
-        <meta name="description" content="A portfolio of my photography" />
+        <meta name="description" content="A curated photography portfolio by Mofjeld Visuals." />
         <meta name="viewport" content="width=device-width" />
+
+        <meta property="og:title" content={title} />
+        <meta property="og:description" content="A curated photography portfolio by Mofjeld Visuals." />
+        <meta property="og:image" content={imageUrl} />
+        <meta property="og:type" content="website" />
+
         <link rel="icon" type="image/png" href="/signature-white.png" />
         <link rel="preconnect" href="https://fonts.googleapis.com">
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
