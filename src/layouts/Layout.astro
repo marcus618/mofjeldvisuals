@@ -28,6 +28,15 @@ const imageUrl = new URL('/signature-white.png', Astro.url);
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
         <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" rel="stylesheet">
         <title>{title}</title>
+
+        <script type="application/ld+json" set:html={JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "Organization",
+            "name": "Mofjeld Visuals",
+            "url": Astro.site,
+            "logo": new URL('/images/signature-white.png', Astro.site),
+            "description": "A curated photography portfolio by Mofjeld Visuals."
+            })} />
     </head>
     <body class="bg-gradient-to-br from-slate-900 to-zinc-900 text-gray-200 font-['Inter']">
         <header class="p-8">

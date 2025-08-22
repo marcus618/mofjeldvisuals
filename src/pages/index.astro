@@ -23,13 +23,13 @@ sortedImages.forEach((image) => {
 
 <Layout title="Mofjeld Visuals">
     <div class="container mx-auto px-4 max-w-screen-xl">
-        <!-- THE MASONRY GRID CONTAINER -->
+        {/* THE MASONRY GRID CONTAINER */}
         <div 
-            class="pswp-gallery flex flex-col md:flex-row gap-4" 
+            class="pswp-gallery flex flex-row gap-4" 
             id="gallery--main"
         >
             {columns.map(column => (
-                <div class="flex flex-col gap-4 md:w-1/3">
+                <div class="flex flex-col gap-4 w-1/3">
                     {column.map(image => (
                         // The `break-inside-avoid` class is key to preventing images from splitting
                         <a
@@ -59,7 +59,7 @@ sortedImages.forEach((image) => {
                 <p>Please make sure your images are uploaded to the correct Cloudinary folder and the folder name is correctly specified in <code>src/content/config.ts</code>.</p>
             </div>
         )}
-	</div>
+    </div>
 </Layout>
 
 
